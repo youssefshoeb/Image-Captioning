@@ -37,7 +37,7 @@ The goal of this project is to combine CNNs and RNNs to build a complex, automat
 ## Model
 You can use the pre-trained model placed in the `saved_models` folder, or train your own network. The pre-trained model is an Encoder Convolutional Neural Network (CNN) and a Decoder Recurrent Neural Network (RNN) based on the [Neural Image Caption](https://arxiv.org/pdf/1411.4555.pdf) model. ![Encoder-Decoder Model][image1]
 
-The EncoderCNN uses a pre-trained ResNet-50 architecture, with the final fully-connected layer removed to extract features from the pre-processed images. The output is then passed through a batch normalization layer, and then flattened to a vector, and passed through a Linear layer to transform the feature vector to have the same size as the word embedding, and then passed through another batch normalzation layer. The DecoderRNN is composed of multiple Long Short-Term Memory(LSTM), and a Linear layer. The fully-connected weights have been initialized as the xavier normal. The LSTM forget gate bias is initialized to 1 for better perforemance, as sugested in this [paper](http://proceedings.mlr.press/v37/jozefowicz15.pdf). The pre-trained model is trained for 3 epochs with the hyper-parameters set in the train.py file.
+The EncoderCNN uses a pre-trained ResNet-50 architecture, with the final fully-connected layer removed to extract features from the pre-processed images. The output is then passed through a batch normalization layer, and then flattened to a vector, and passed through a Linear layer to transform the feature vector to have the same size as the word embedding, and then passed through another batch normalzation layer. The DecoderRNN is composed of multiple Long Short-Term Memory(LSTM), and a Linear layer. The fully-connected weights have been initialized as the xavier normal weights. The LSTM forget gate bias is initialized to 1 for better perforemance, as sugested in this [paper](http://proceedings.mlr.press/v37/jozefowicz15.pdf). The pre-trained model is trained for 3 epochs with the hyper-parameters set in the train.py file.
 
  ### Dependencies
 - [OpenCV](http://opencv.org/)
@@ -53,7 +53,8 @@ The EncoderCNN uses a pre-trained ResNet-50 architecture, with the final fully-c
 
  ## Data
  ![Dataset][image12]
- In this project the [Microsoft Common Objects in COntext (MS COCO)](http://cocodataset.org/#home) dataset is used to train the network. To get the data, run the following commands in the project directory:
+
+ In this project the [Microsoft Common Objects in COntext (MS COCO)](http://cocodataset.org/#home) dataset is used to train the network. To get the dataset, and setup the coco API  run the following commands in the project directory:
 
 ```
 mkdir opt
@@ -83,6 +84,4 @@ unzip -n train2014.zip -d ./images
 This dataset consists of:
 - **2014 Train/Val annotations [241MB]** annotations.
 - **2014 Train images [83K/13GB]** images.
-  
-The `data_loader.py` file can be used to pre-process, and load the COCO training set in batches. 
 
